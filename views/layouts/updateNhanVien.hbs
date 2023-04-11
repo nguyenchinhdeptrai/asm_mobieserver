@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+    {{{body}}}
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-2 ">
+            <div class="text-center bg-light">
+                <label for="" class="fw-bold fs-5">Chức Năng</label>
+            </div>
+            <div class="container d-flex justify-content-center align-items-center">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav">
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Thêm Sản Phẩm
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <a class="nav-link" href="/addProduct"><i class="fas fa-plus"></i> Thêm Sản
+                                                Phẩm</a>
+                                            <a class="nav-link" href="/addNhanvien"><i class="fas fa-plus"></i> Thêm
+                                                Nhân
+                                                Viên</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/acount"><i class="fas fa-user"></i> Quản lý tài khoản</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/hoadon"><i class="fas fa-credit-card"></i> Thanh toán hóa
+                                    đơn</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="col-sm-9 bg-light">
+            <h2 class="text-center m-2">Sửa Nhân Viên</h2>
+            {{#if check}}
+            <span style="color: red">{{check}}</span>
+            {{/if}}
+
+            <form action="/acount/updateUser2" method="post" enctype="multipart/form-data">
+                <div class="d-flex justify-content-center mb-2">
+                    <img id="myImg" src="{{img}}" class="rounded-circle" alt="example placeholder"
+                        style="width: 120px;" />
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" onclick="document.querySelector('input[type=file]').click()"
+                        class="btn btn-primary">Chọn ảnh</button>
+                    <input type="file" name="myImage" accept="image/*" onchange="loadFile(event)"
+                        style="display:none" />
+                </div>
+
+                <script>
+                    // :http://localhost:3030/uploads/Mau3.png
+                    var loadFile = function (event) {
+                        var image = document.getElementById('myImg');
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                    };
+                </script>
+                <input type="hidden" class="form-control" id="id" placeholder="Enter password" name="id" value="{{id}}">
+                <div class="form-floating mt-3 mb-3">
+                    <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="name"
+                        value="{{name}}">
+                    <label for="pwd">Nhập Họ Tên</label>
+                </div>
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" class="form-control" id="email" placeholder="Enter email" name="email"
+                        value="{{email}}">
+                    <label for="email">Nhập Email</label>
+                </div>
+                <div class="form-floating mt-3 mb-3">
+                    <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pass">
+                    <label for="pwd">Nhập Password</label>
+                </div>
+                <div class="form-floating mt-3 mb-3">
+                    <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pass2">
+                    <label for="pwd">Nhập Lại Password</label>
+                </div>
+                <div class="mb-3 mt-3">
+                    <p>Phân Quyền</p>
+                    <select class="form-select" name="phanQuyenAdmin">
+                        <option value="{{status}}">{{status}}</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                    </select>
+                </div>
+
+
+
+                <div class="d-flex justify-content-center ">
+                    <button type="submit" class="btn btn-primary me-2">Sửa Nhân Viên</button>
+                </div>
+
+            </form>
+
+        </div>
+</body>
+
+</html>
